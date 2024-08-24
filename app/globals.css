@@ -1,4 +1,52 @@
-body {
-  background-color: green;
+* {
+  color: white;
+  font-size: 18px;
+}
+
+html, body {
+  height: 98%;
+  width: 98%;
+  overflow: hidden;
+  color: white;
+  
+}
+
+.controls {
+  color: white;
+  background: #215519!important;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  padding: 10px;
+  
+}
+.container {
+  overflow: scroll;
+  margin-top: 0;
+  margin-bottom: 65px;
+  border-radius: 20px;
+  height: 94%;
+  padding: 0 10px 10px 10px;
+  overflow: scroll;
+  width: 98%;
+}
+
+tr:nth-child(1) td {
+  background: #215519;
+  color: white;
+}
+tr:nth-child(even) td {
+  background: grey;
+  color: white
+}
+button.float-add {
+  position: fixed;
+  left: 25px;
+  bottom: 10px;
+  z-index: 230;
+  height: 52px;
+  background: #316529!important;
   color: white;
 }

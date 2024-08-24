@@ -1,3 +1,9 @@
+## TODO
+
+- reparar parseador
+- terminar save
+- agregar tests
+
 # challenge
 
 Solve the following repository challenge:
@@ -6,7 +12,9 @@ Solve the following repository challenge:
 
 ## Getting Started
 
-Currently it **requires** node 18.17.0 and npm > 9 to run.
+Read more about it [Aufgabenerbebnis.mb](https://github.com/UDG-United-Digital-Group/frontend-junior-code-challenge-1/blob/master/README.en-US.md)
+
+Currently it **requires** `node` version `18.17.0` and `npm` version `10.8.2`
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -16,31 +16,25 @@ export async function GET(request: Request): Promise<Response> {
   try {
     
     const projectFolder = process.cwd();
-    const articlesFolder = projectFolder + '/data/articles.csv';
-    let values
     
+    const articlesCSV: string = fs.existsSync(projectFolder + '/data/articles.csv') 
+        ? fs.readFileSync(projectFolder + '/data/articles.csv', 'utf8')
+        : fs.readFileSync(projectFolder + '/data/original.csv', "utf-8")
     
-    const csv = fs.readFileSync(articlesFolder, 'utf8');
+    const headerString = "Hauptartikelnr;Artikelname;Hersteller;Beschreibung;Materialangaben;Geschlecht;Produktart;Ärmel;Bein;Kragen;Herstellung;Taschenart;Grammatur;Material;Ursprungsland;Bildname"
 
-    const array = csv.split("\n").map(line => line.split(";"))
+    const header = headerString
+        .split(";")
+    
+    const results: string[][] = [header]
 
-    const articles: any[] = []
-
-    array[0].forEach((title) => {
-        array.slice(1).forEach((element, j) => {
-            let el: any = {}
-            element.forEach(x => {
-                el[title] = x
-            })
-            articles.push({
-                el                
-            })
-        })
-    });
-
-    console.log(array[1])
-
-    return new Response(JSON.stringify(articles), {
+    articlesCSV.replace(headerString, "").split(/\.jpg\s*(?:\r?\n)/).forEach(line => {
+        const result = line.split(";")
+        result[result.length - 1] += ".jpg"
+        results.push(result)
+    })
+    
+    return new Response(JSON.stringify(results), {
         headers: { 
             'Content-Type': 'application/json; chatset=utf-8',
         }

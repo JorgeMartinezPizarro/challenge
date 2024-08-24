@@ -1,22 +1,17 @@
 'use client'
 
 import {useState, useEffect} from "react"
-import Image from "next/image";
-import styles from "./page.module.css";
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import {Button, Table} from '@mui/material';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { TextField, Button, TablePagination, Modal, tableCellClasses, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Table} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { BackHand } from "@mui/icons-material";
 
 export default function Home() {
   
   const [error, setError] = useState("")
-  const [data, setData] = useState<any>([])
-
+  const [data, setData] = useState<string[][]>([])
+  const [page, setPage] = useState(0)
+  const [adding, setAdding ] = useState(false)
+  const [values, setValues ] = useState([])
   useEffect(() => {
     
     fetch("/api/load")
@@ -25,30 +20,63 @@ export default function Home() {
       })
       .then(data => {
         setError("")
+        console.log(data)
         setData(data)
       })
       .catch(error => {
         setError(error)
       })
   }, [])
+
+  const headerString = "Hauptartikelnr;Artikelname;Hersteller;Beschreibung;Materialangaben;Geschlecht;Produktart;Ärmel;Bein;Kragen;Herstellung;Taschenart;Grammatur;Material;Ursprungsland;Bildname"
+
+  const header = headerString
+      .split(";")
   
-  return (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-              </TableRow>
-            </TableHead>
+  return (<>
+          <Button onClick={() => setAdding(true)} className={"float-add"}>ADD</Button>
+          {adding && <Modal open={adding} style={{marginBottom: "80px", background: "green", opacity: 1, textAlign: "center", overflowY:"scroll"}}>
+              <>
+                <p>Filling the following values to create a new Article in our database.</p>
+                {header.map(element => <><TextField style={{marginBottom: "12px"}} label={element} type="text"placeholder={element}/><br/></>) }
+                <div className="controls">
+                  <Button variant="contained" color="primary" onClick={() => setAdding(false)} >CLOSE</Button>
+                  <Button variant="contained" color="secondary" onClick={() => setAdding(false)} >SAVE</Button>
+                </div>
+              </>
+            </Modal>}
+          <TableContainer className="container">
+          <Table>
             <TableBody>
-              {error && <TableRow><TableCell style={{color: "red"}}>{error}</TableCell></TableRow>}
-              {data.slice(1, 3).map(row => <TableRow><TableCell>{row.length}</TableCell></TableRow>)}
+              {<TableRow key={"-"}>{
+                    data[0] && data[0].map((el, i) => <TableCell key={el + " - " + i}>{el}</TableCell>)
+                }</TableRow>}
+            <TableRow><TablePagination
+                  className="controls"
+                    rowsPerPageOptions={[]}
+                    colSpan={16}
+                    count={data.length}
+                    rowsPerPage={50}
+                    page={page}
+                    slotProps={{
+                      select: {
+                        inputProps: {
+                          'aria-label': 'rows per page',
+                        },
+                        native: true,
+                      },
+                    }}
+                    
+                    onPageChange={(e, int) => {setPage(int)}}
+          /></TableRow>
+              {error && <TableRow key={"-1"}><TableCell key={error} style={{color: "red"}}>{error}</TableCell></TableRow>}
+              {data.slice(1 + 50*page, 50*page + 50).map((row, j) => <TableRow key={j}>{
+                row.map((el, i) => <TableCell key={el + " - " + i}>{el}</TableCell>)
+              }</TableRow>)}
             </TableBody>
           </Table>
         </TableContainer>
+        
+      </>
   );
 }
