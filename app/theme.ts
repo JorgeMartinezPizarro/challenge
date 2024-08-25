@@ -2,8 +2,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export const PRIMARY = '#215519'
 export const SECONDARY = '#312121'
-export const PRIMARY_TEXT = "#212121"
-export const SECONDARY_TEXT = "#131313"
+export const PRIMARY_TEXT = "#f9f9f9"
+export const SECONDARY_TEXT = "#611894"
 
 
 const theme = createTheme({

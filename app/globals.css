@@ -7,7 +7,7 @@ html, body {
 
 .container {
   margin-top: 80px;
-  height: calc(100% - 120px);
+  height: calc(100% - 270px);
   width: 97%!important;
   overflow-y: scroll;
 }
@@ -34,24 +34,17 @@ html, body {
   color: white;
 }
 
-tr:nth-child(1) td,
-tr:nth-child(1):hover td {
-  background: grey;
-  color: white
-  
-}
-.MuiToolbar-root  {
-  color: white;
-  
-}
+
 tr:nth-child(even) td {
+  color: #215519;
+  background: white;
+}
+
+tr:nth-child(odd) td {
   color: white;
   background: #215519;
 }
-tr:nth-child(even) td {
-  color: black;
-  background: grey;
-}
+
 
 button.float-add {
   position: fixed;
@@ -70,12 +63,6 @@ button.float-add-2 {
   height: 52px;
   background: #316529;
   color: white;
-}
-
-.list tr:nth-child(even):hover td,
-.list tr:nth-child(odd):hover td {
-  color: "white";
-  background-color: black;
 }
 
 tr span {

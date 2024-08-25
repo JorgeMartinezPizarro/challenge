@@ -92,13 +92,23 @@ export default function Home() {
   }, [fetchAll])
   
   return (<ThemeProvider theme={theme}>
-          {!loading && data.header.length > 0 && <Button color="secondary" onClick={() => setEditing({
+          {data.header.length > 0 && <Button color="secondary" onClick={() => setEditing({
             data: data.header.map(line => ""),
             pos: -1,
             page,
           })} className={"float-add"}><AddIcon /></Button>}
-          {!loading && data.header.length > 0 && <Button color="secondary" onClick={() => fetchAll(true)} className={"float-add-2"}><RefreshIcon /></Button>}
-          {!loading && data.header.length > 0 && editing && <Modal open={true} style={{marginTop: "80px", background: "grey", opacity: 1, textAlign: "center", overflowY:"scroll"}}>
+          {data.header.length > 0 && <Button color="secondary" onClick={() => fetchAll(true)} className={"float-add-2"}><RefreshIcon /></Button>}
+          {error && <Alert style={{marginTop: "90px", width: "90%"}} icon={<ErrorIcon />} variant="standard" severity="error">
+                  An error ocurred: {error}
+            </Alert>
+          }
+          {message && !error && <Alert style={{marginTop: "90px", width: "90%"}} icon={<CheckIcon />} variant="standard" severity="success">
+                  {message}
+                </Alert>
+                
+          }
+          {data.header.length > 0 && editing && <Modal open={true} style={{marginTop: "80px", background: "grey", opacity: 1, textAlign: "center", overflowY:"scroll"}}>
+            
               <>
                 <p>{editing.pos === -1 ? " Create a new Article in our database" : "Edit the article with (pos, page) = (" + editing.pos + ", " + page + ")"}</p>
                 {data.header.map((element, i) => <>{element}:<br/><TextField style={{marginBottom: "12px"}} name={"param-" + i} value={editing !== undefined && editing.data ? editing.data[i] : ""} onChange={(e) => {
@@ -110,12 +120,12 @@ export default function Home() {
                   })
                 }} label={element} type="text"/><br/></>) }
                 <Box className="controls">
-                  <Button variant="contained" color="error" onClick={() => setEditing(false)} >CLOSE</Button>
+                  <Button variant="contained" color="secondary" onClick={() => setEditing(false)} >CLOSE</Button>
                   <Button variant="contained" color="primary" onClick={() => save(editing)} >SAVE</Button>
                 </Box>
               </>
             </Modal>}
-          {!loading && data.header.length > 0 && <TableContainer component={Paper} className="container">
+          {data.header.length > 0 && <TableContainer component={Paper} className="container">
           <Table stickyHeader>
             <TableBody>
               {<TableRow key={"header"}>
@@ -131,26 +141,16 @@ export default function Home() {
                     page={page}
                     onPageChange={(e, int) => {setPage(int); fetchAll()}}
           /></TableRow>
-              {error && <TableRow key={"-1"}><TableCell colSpan={14} key={error} style={{height: "100%", color: "red", background: "white"}}>
-                <Alert style={{width: "85%"}} icon={<ErrorIcon />} severity="error">
-                  An error ocurred: {error}
-                </Alert>
-              </TableCell></TableRow>}
-              {message && <TableRow key={"-1"}><TableCell colSpan={14} key={message} style={{height: "100%", color: "green", background: "white"}}>
-                <Alert style={{width: "85%"}} icon={<CheckIcon />} severity="success">
-                  {message}
-                </Alert>
-                
-              </TableCell></TableRow>}
-              {!loading && data.data.length > 0 && data.data.map((row: string[], j: number) => <TableRow className="list" key={j}>
-                <TableCell><Button color="primary" onClick={() => {
+              
+              {data.data.length > 0 && data.data.map((row: string[], j: number) => <TableRow className="list" key={j}>
+                <TableCell title={"Edit element with data: " + row.toString()}><Button color="secondary" onClick={() => {
                   setEditing({
                     data: row,
                     page,
                     pos: j,
                   })
                 }}><EditIcon /></Button></TableCell>
-                <TableCell><Button color="error" onClick={() => {
+                <TableCell title={"Delete element with data: " + row.toString()}><Button color="error" onClick={() => {
                   save({
                     data: undefined,
                     pos: j,
@@ -162,7 +162,7 @@ export default function Home() {
             </TableBody>
           </Table>
         </TableContainer>}
-        {loading || data.header.length === 0 && <Modal open={loading || data.header.length === 0}><CircularProgress style={{color: "white", position: "fixed", left: "45%", width: "53px", top: "45%"}} />
+        {!data.data.length || !data.header.length && <Modal open={loading || data.header.length === 0}><CircularProgress style={{color: "white", position: "fixed", left: "45%", width: "53px", top: "45%"}} />
         </Modal>
         }
       </ThemeProvider>
