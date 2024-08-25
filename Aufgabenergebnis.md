@@ -15,13 +15,16 @@ Ich setze in meinem Projekt die folgenden 3rd Party Libraries ein: (falls keine,
 Name | Begründung
 --- | ---
 [material UI](https://mui.com) | Für die Style des Apps.
-[nextjs](https://example.org) | Für einfacher React zu starten.
+[nextjs](https://example.org) | Für das Build des Systems.
+[papaparse](https://www.npmjs.com/package/papaparse) | Für das Lesen des CSV.
 
 ## Installation / Ausführen des Projektes
 
 Folgende Komponenten müssen lokal installiert sein:
 
-- [nodejs](https://nodejs.org/en) v18.17.0 and [npm](https://npm.org) v9.6.7 and optional [docker](https://docker.com) latest
+- [nodejs](https://nodejs.org/en) v18.17.0 
+- [npm](https://npm.org) v9.6.7
+- [docker](https://docker.com) latest - *optional*
 
 Um das Projekt lokal auszuführen, folgendes in der Commandline / Bash eingeben:
 

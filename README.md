@@ -1,10 +1,8 @@
 ## TODO
 
-- EDIT AND DELTE
 - FORM VALIDATION ; and "
 - ADD 4 TESTS
 - FORM SPEED UP
-- LOAD WITH PAGE
 
 # challenge
 
@@ -16,7 +14,7 @@ Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro
 
 ## Getting Started
 
-It **requires** [nodejs](https://nodejs.org/en) v18.17.0 and [npm](https://npm.org) v9.6.7 and optional [docker](https://docker.com) latest
+It **requires** [nodejs](https://nodejs.org/en) v18.17.0 and [npm](https://npm.org) v9.6.7 and (optional) [docker](https://docker.com) latest
 
 Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 

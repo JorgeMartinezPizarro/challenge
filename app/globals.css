@@ -33,16 +33,31 @@ html, body {
 
 tr:nth-child(1) td,
 tr:nth-child(1):hover td {
-  background: #215519;
-  color: white;
-}
-tr:nth-child(even) td {
   background: grey;
   color: white
+  
 }
+tr:nth-child(even) td {
+  color: white;
+  background: #215519;
+}
+tr:nth-child(even) td {
+  color: black;
+  background: grey;
+}
+
 button.float-add {
   position: fixed;
   right: 16px;
+  top: 16px;
+  z-index: 230;
+  height: 52px;
+  background: #316529;
+  color: white;
+}
+button.float-add-2 {
+  position: fixed;
+  right: 100px;
   top: 16px;
   z-index: 230;
   height: 52px;
@@ -67,4 +82,21 @@ tr span {
   line-height: 25px;       /* Adjust line height as needed */
   height: 50px;            /* Set height to exactly 2 lines */
   white-space: normal;      /* Allows wrapping of text */
+}
+.MuiModal-root {
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  color: white;
+  background: black;
+  height: 100%;
+  margin-top: 92px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+input[type="text"],
+input[type="text"] * {
+  color: black;
+  background: white;
+  border-color: white;
 }

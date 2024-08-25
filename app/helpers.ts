@@ -8,3 +8,4 @@ export const errorMessage = function errorMessage(error: Error | any): string {
         else message = String(error)
         return message;
 };
+
