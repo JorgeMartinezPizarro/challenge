@@ -31,6 +31,10 @@ To run with docker:
 docker compose up -d
 ```
 
+There is already a docker image ready to use with the latest build of the challenge:
+
+[Docker Hub](https://hub.docker.com/repository/docker/jorgemartinezpizarro/dev/tags)
+
 Open [http://localhost:31415](http://localhost:31415) with your browser to see the result.
 
 ## Learn More
@@ -46,6 +50,5 @@ To learn more about Next.js, take a look at the following resources:
 For the owner of the account, otherwise change the `jorgemartinezpizarro/dev:challenge` for your own docker account.
 
 ```bash
-    docker build -t jorgemartinezpizarro/dev:challenge .
-    docker push jorgemartinezpizarro/dev:challenge
+    docker build -t jorgemartinezpizarro/dev:challenge . && docker push jorgemartinezpizarro/dev:challenge && docker compose down --remove-orphans && docker compose up -d
 ```
