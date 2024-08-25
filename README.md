@@ -13,9 +13,9 @@ Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro
 
 ## Getting Started
 
-It **requires** [nodejs](https://nodejs.org/en) v18.17.0 and [npm](https://npm.org) v9.6.7 and (optional) [docker](https://docker.com) latest
-
 Just see the secured live version [Live DEMO](https://dev.ideniox.com)
+
+To continue you **require** [nodejs](https://nodejs.org/en) `v18.17.0` and [npm](https://npm.org) `v9.6.7` or [docker](https://docker.com) `latest`
 
 To run with node and npm:
 
@@ -50,5 +50,8 @@ To learn more about Next.js, take a look at the following resources:
 For the owner of the account, otherwise change the `jorgemartinezpizarro/dev:challenge` for your own docker account.
 
 ```bash
-    docker build -t jorgemartinezpizarro/dev:challenge . && docker push jorgemartinezpizarro/dev:challenge && docker compose down --remove-orphans && docker compose up -d
+    docker build -t jorgemartinezpizarro/dev:challenge . 
+    docker compose down --remove-orphans
+    docker compose up -d
+    docker push jorgemartinezpizarro/dev:challenge
 ```

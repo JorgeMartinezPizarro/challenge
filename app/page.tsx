@@ -106,20 +106,20 @@ export default function Home() {
   console.log(message)
   return (<ThemeProvider theme={theme}>
     {data && <header>
-      <Button title="Navigate to the first page" onClick={() => {setPage(0); fetchAll()}} color="secondary" variant="contained"><FirstPageIcon /></Button>
-      <Button title="Navigate one page back" color="secondary" variant="contained" onClick={() => {
+      <Button title="Navigate to the first page" onClick={() => {setPage(0); fetchAll()}} color="primary" variant="contained"><FirstPageIcon /></Button>
+      <Button title="Navigate one page back" color="primary" variant="contained" onClick={() => {
         setPage((page === 0) ? 0 : (page - 1))
         fetchAll()
       }}><ArrowBackIosNewIcon /></Button>
-      <a download="articles.csv" href="/api/download"><Button variant="contained" title="Download the current status of the articles database" color="secondary"><DownloadIcon /></Button></a>
+      <a download="articles.csv" href="/api/download"><Button variant="contained" title="Download the current status of the articles database" color="primary"><DownloadIcon /></Button></a>
        
-      <Button variant="contained" title="Navigate to the next page" color="secondary" onClick={() => {
+      <Button variant="contained" title="Navigate to the next page" color="primary" onClick={() => {
         setPage((page === totalPages - 1) ? totalPages - 1 : page + 1)
         fetchAll()
       }}><ArrowForwardIosIcon /></Button>
-      <Button variant="contained" title="Navigate to the last page" color="secondary" onClick={() => {setPage(totalPages - 1); fetchAll()}}><LastPageIcon /></Button>
-      <Button variant="contained" title="Add new Article to the database" color="secondary" onClick={() => {setEditing({data: [], page, pos: -1})}} ><AddIcon /></Button>
-      <Button variant="contained" title="Reload the data from the challenge" color="secondary" onClick={() => {fetchAll(true)}} ><RefreshIcon /></Button>
+      <Button variant="contained" title="Navigate to the last page" color="primary" onClick={() => {setPage(totalPages - 1); fetchAll()}}><LastPageIcon /></Button>
+      <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({data: [], page, pos: -1})}} ><AddIcon /></Button>
+      <Button variant="contained" title="Reload the data from the challenge" color="primary" onClick={() => {fetchAll(true)}} ><RefreshIcon /></Button>
     </header>}
           {error && <Alert  style={{marginTop: "124px", width: "calc(98% - 8px)"}} icon={<ErrorIcon />} variant="filled" severity="error">
                   An error ocurred: {error}

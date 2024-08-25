@@ -1,9 +1,9 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const PRIMARY = '#215519'
-const SECONDARY = '#008800'
 const PRIMARY_TEXT = "#f9f9f9"
-const SECONDARY_TEXT = "#f9f9f9"
+const SECONDARY = '#f9f9f9'
+const SECONDARY_TEXT = "#215519"
 
 const theme = createTheme({
     components: {
@@ -32,7 +32,6 @@ const theme = createTheme({
             styleOverrides: {
               root: {
                 textAlign: "center",
-                
                 background: '#000000',
                 color: "#ffffff",
                 overflowY: "scroll",
@@ -63,6 +62,14 @@ const theme = createTheme({
                     margin: "3px",
                     boxShadow: 6,
                 },
+                "&:hover": {
+                    backgroundColor: SECONDARY,  // Customize the hover color for primary buttons
+                    color: SECONDARY_TEXT,
+                    height: "87px",
+                    padding: "3px",
+                    margin: "3px",
+                    boxShadow: 6,
+                },
               },
               containedSecondary: {
                 "&": {
@@ -73,6 +80,15 @@ const theme = createTheme({
                     margin: "3px",
                     boxShadow: 6,
                 },
+                "&:hover": {
+                    backgroundColor: PRIMARY,  // Customize the hover color for primary buttons
+                    color: PRIMARY_TEXT,
+                    height: "87px",
+                    padding: "3px",
+                    margin: "3px",
+                    boxShadow: 6,
+                },
+                
               },
             },
         },
