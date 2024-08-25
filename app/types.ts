@@ -1,7 +1,8 @@
 export type SaveArticle = {
     data: string[] | undefined;
-    pos: number,
-    page: number
+    pos: number;
+    page: number;
+    pageSize: number;
 }
 
 export type Articles = {
@@ -9,3 +10,9 @@ export type Articles = {
     data: string[][];
     length: number;
 }
+
+export type ArticlesResponse = {
+    message: string;
+    articles: Articles;
+}
+

@@ -2,25 +2,14 @@
 
 import { ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect, useCallback} from "react"
-import { Grid, CircularProgress, Box, TextField, Button, Alert, TablePagination, Modal, tableCellClasses, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Table} from '@mui/material';
-import { BackHand as BackHandItem, Download as DownloadIcon, LastPage as LastPageIcon, FirstPage as FirstPageIcon, Error as ErrorIcon, Check as CheckIcon, Refresh as RefreshIcon, Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import {errorMessage} from "./helpers"
-import { SaveArticle, Articles } from "./types";
+import { CircularProgress, Box, TextField, Button, Alert, Modal, TableBody, TableCell, TableContainer, TableHead, TableRow, Table} from '@mui/material';
+import { ArrowBackIosNew as ArrowBackIosNewIcon, ArrowForwardIos as ArrowForwardIosIcon, Download as DownloadIcon, LastPage as LastPageIcon, FirstPage as FirstPageIcon, Error as ErrorIcon, Check as CheckIcon, Refresh as RefreshIcon, Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
+
+import {errorMessage} from './helpers'
+import { SaveArticle, Articles, ArticlesResponse } from "./types";
 import theme from './theme'
 
-const PAGE_SIZE = 25
-
-const loadDataFromStorage = (): Articles | undefined => {
-  try {
-    
-    return JSON.parse(localStorage.getItem("challenge-data")||"x")
-    
-  } catch (e) {
-
-  }
-}
+const pageSize = 25;
 
 export default function Home() {
   
@@ -30,7 +19,9 @@ export default function Home() {
   const [page, setPage] = useState(0)
   const [editing, setEditing ] = useState<undefined | SaveArticle>(undefined)
   const [loading, setLoading] = useState(false)
-  
+
+  const totalPages = Math.round((data?.length || 0) / pageSize)
+
   const fetchAll = useCallback((refresh: boolean = false) => {
     setLoading(true)
     const options = {
@@ -40,14 +31,15 @@ export default function Home() {
       },
       body: JSON.stringify({
         page,
+        pageSize,
         refresh: refresh ? true : undefined
       }),
     }
     fetch("/api/load", options)
       .then(res => res.json())
-      .then((data: Articles) => {
-        setMessage("Successfuly loaded paged data " + (refresh ? "from original file" : "from storage" + " with page = " + (page + 1) ))
-        setData(data)
+      .then((data: ArticlesResponse) => {
+        setData(data.articles)
+        setMessage(data.message)
         setError("")
         setLoading(false)
       })
@@ -77,15 +69,10 @@ export default function Home() {
     
     fetch("/api/save", options)
     .then(res => res.json())
-    .then(res => {
-      if (res.error) {
-        setMessage("")
-        setError(errorMessage(res.error))
-      } else {
-        setData(res.data)
-        setMessage(res.message)
-        setError("")
-      }
+    .then((res: ArticlesResponse) => {
+      setData(res.articles)
+      setMessage(res.message)
+      setError("")
       setEditing(undefined)  
       setLoading(false)
     })
@@ -101,8 +88,8 @@ export default function Home() {
   useEffect(() => {
     fetchAll()
   }, [fetchAll])
-  
-  const totalPages = Math.round((data?.length || 0) / PAGE_SIZE)
+
+  console.log(data)
   
   return (<ThemeProvider theme={theme}>
     {data && <header>
@@ -118,7 +105,7 @@ export default function Home() {
         fetchAll()
       }}><ArrowForwardIosIcon /></Button>
       <Button variant="contained" title="Navigate to the last page" color="primary" onClick={() => {setPage(totalPages - 1); fetchAll()}}><LastPageIcon /></Button>
-      <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({data: data.header.map(() => ""), page, pos: -1})}} ><AddIcon /></Button>
+      <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({pageSize, data: data.header.map(() => ""), page, pos: -1})}} ><AddIcon /></Button>
       <Button variant="contained" title="Reload the data from the challenge" color="primary" onClick={() => {fetchAll(true)}} ><RefreshIcon /></Button>
     </header>}
           {error && <Alert title={error} icon={<ErrorIcon />} variant="filled" severity="error">
@@ -138,7 +125,7 @@ export default function Home() {
                   <Button variant="contained" color="secondary" onClick={() => setEditing(undefined)} >CLOSE</Button>
                   <Button variant="contained" color="primary" onClick={() => window.confirm("Are you sure you want to save the element with content \n\n" + (editing.data && editing.data.map(c => "\n - " + c))) && save(editing)} >SAVE</Button>
                 </Box>
-                {data.header.map((element, i) => <>{element}:<br/><TextField style={{marginBottom: "12px"}} name={"param-" + i} value={editing !== undefined && editing.data ? editing.data[i] : ""} onChange={(e) => {
+                {data.header.map((element, i) => <>{element}:<br/><TextField style={{marginBottom: "12px"}} placeholder={undefined} name={"param-" + i} value={editing !== undefined && editing.data ? editing.data[i] : ""} onChange={(e) => {
                   const newValues: string[] = editing !== undefined && editing.data ? editing.data as string[] : []
                   newValues[i] = e.target.value
                   setEditing({
@@ -158,18 +145,19 @@ export default function Home() {
               </TableRow>}
             </TableHead>
             <TableBody>
-              
               {data.data.length > 0 && data.data.map((row: string[], j: number) => <TableRow className="list" key={j}>
-                <TableCell title={"Edit element with data: " + row.toString()}><Button color="secondary" onClick={() => {
+                <TableCell title={"Edit element with data: " + row.toString()}><Button color="primary" variant="contained" onClick={() => {
                   setEditing({
                     data: row,
                     page,
                     pos: j,
+                    pageSize,
                   })
                 }}><EditIcon /></Button></TableCell>
-                <TableCell title={"Delete element with data: " + row.toString()}><Button color="error" onClick={() => {
+                <TableCell title={"Delete element with data: " + row.toString()}><Button color="secondary" variant="contained" onClick={() => {
                   window.confirm("Are you sure you want to remove the element with content \n\n" + row.map(c => "\n - " + c)) && save({
                     data: undefined,
+                    pageSize,
                     pos: j,
                     page,
                   })

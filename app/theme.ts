@@ -2,8 +2,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const PRIMARY = '#215519'
 const PRIMARY_TEXT = "#f9f9f9"
-const SECONDARY = '#f9f9f9'
-const SECONDARY_TEXT = "#215519"
+const PRIMARY_HOVER = "#158117"
+const SECONDARY = '#990000'
+const SECONDARY_TEXT = "#e5e5e5"
+const SECONDARY_HOVER = "#590000"
 
 const theme = createTheme({
     components: {
@@ -23,16 +25,18 @@ const theme = createTheme({
                 overflow: "scroll",
                 width: "calc(100% - 32px)",
                 height: "calc(100% - 230px)",
-                marginTop: "20px"
+                marginTop: "40px"
               },
             },
         },
         MuiAlert: {
             styleOverrides: {
                 root: {
-                    marginTop: "92px", 
+                    marginTop: "70px", 
                     width: "calc(95% - 53px)",
-                    height: "84px"
+                    height: "84px",
+                    overflow: 'hidden',
+                    textOverflow: "ellipsis"
                 },
             },
         },
@@ -41,7 +45,7 @@ const theme = createTheme({
               root: {
                 textAlign: "center",
                 background: '#000000',
-                color: "#ffffff",
+                color: "#d7d7d7",
                 overflowY: "scroll",
                 width: "100%",
                 height: "calc(100% - 92px)",
@@ -53,13 +57,10 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
               root: {
-                height: "28px",
                 padding: "4px",
                 margin: "4px",
               },
               text: {
-                // Common styles for all buttons
-                transition: 'all 0.3s ease-in-out',
                 primary: PRIMARY_TEXT,
                 secondary: SECONDARY_TEXT,
               },
@@ -69,9 +70,7 @@ const theme = createTheme({
                     color: PRIMARY_TEXT,
                 },
                 "&:hover": {
-                    backgroundColor: SECONDARY,
-                    color: SECONDARY_TEXT,
-                    boxShadow: 18,
+                    backgroundColor: PRIMARY_HOVER,
                 },
               },
               containedSecondary: {
@@ -80,9 +79,7 @@ const theme = createTheme({
                     color: SECONDARY_TEXT,
                 },
                 "&:hover": {
-                    backgroundColor: PRIMARY,
-                    color: PRIMARY_TEXT,
-                    boxShadow: 18,
+                    backgroundColor: SECONDARY_HOVER,
                 },
                 
               },

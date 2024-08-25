@@ -1,7 +1,6 @@
 import fs from 'fs';
 
-import {errorMessage} from "../../helpers"
-import {convertToCSV, parseCSV} from '../../parser'
+import {convertToCSV, parseCSV, errorMessage} from '../../helpers'
 import {SaveArticle} from '../../types'
 
 const PAGE_SIZE = 25
@@ -15,16 +14,13 @@ export async function POST(request: Request): Promise<Response> {
     
     const projectFolder = process.cwd();
     
-    const articlesFolder: string = fs.existsSync(projectFolder + '/data/stored.csv')
-      ? projectFolder + '/data/stored.csv'
-      : projectFolder + '/data/original.csv'
-    
-    const saveFolder = projectFolder + '/data/stored.json';
-    
-    const storedArticles: any = await parseCSV(articlesFolder);
+    const storedArticles: string[][] = fs.existsSync(projectFolder + '/data/stored.json')
+      ? JSON.parse(fs.readFileSync(projectFolder + '/data/stored.json', 'utf8')) as string[][]
+      : await parseCSV(fs.readFileSync(projectFolder + '/data/original.csv', 'utf8')) as string[][]
     
     let newArticles = [...storedArticles]
     let message = ""
+
     if (pos === -1 && data !== undefined) {
       message = "Added new element on first position with data " + "[" + data.join(", ") + "] in " + (Date.now() - start) + " ms"
       newArticles = [...newArticles.slice(0, page * PAGE_SIZE + 1), data, ...newArticles.slice(page * PAGE_SIZE + 1)]
@@ -36,14 +32,14 @@ export async function POST(request: Request): Promise<Response> {
       message = "Deleted element with pos " + pos + " in " + (Date.now() - start) + " ms"
     }
 
-    fs.writeFileSync(saveFolder, JSON.stringify(newArticles));
+    fs.writeFileSync(projectFolder + '/data/stored.json', JSON.stringify(newArticles));
     
     return new Response(JSON.stringify({
-      message,
-      data: {
+      message, 
+      articles: {
         header: newArticles[0],
         data: newArticles.slice(1).slice(page * PAGE_SIZE, PAGE_SIZE + page * PAGE_SIZE),
-        length: newArticles.length - 1
+        length: newArticles.length - 1,
       }}), {
         headers: { 
             'Content-Type': 'application/json; chatset=utf-8',
