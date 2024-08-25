@@ -1,7 +1,7 @@
 ## TODO
 
 - ADD 2 TESTS
-- FORM BEAUTY AND COLOR
+- FORM FIXY
 
 # challenge
 
