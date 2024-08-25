@@ -1,7 +1,7 @@
 'use client'
 
 import { ThemeProvider } from '@mui/material/styles';
-import {useState, useEffect} from "react"
+import {useState, useEffect, useCallback} from "react"
 import { CircularProgress, Box, TextField, Button, Alert, TablePagination, Modal, tableCellClasses, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Table} from '@mui/material';
 import { Error as ErrorIcon, Check as CheckIcon, Refresh as RefreshIcon, Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
 
@@ -20,9 +20,19 @@ export default function Home() {
   const [editing, setEditing ] = useState<false | SaveArticle>(false)
   const [loading, setLoading] = useState(false)
   
-  const fetchAll = (refresh: boolean = false) => {
+  const fetchAll = useCallback((refresh: boolean = false) => {
     setLoading(true)
-    fetch("/api/load?page=" + page + (refresh ? "&refresh=true" : ""))
+    const options = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        page,
+        refresh: refresh ? true : undefined
+      }),
+    }
+    fetch("/api/load", options)
       .then(res => res.json())
       .then((data: Articles) => {
         setMessage("Successfuly loaded paged data " + (refresh ? "from original file" : "from storage" + " with page = " + page))
@@ -35,9 +45,9 @@ export default function Home() {
         setData({data: [], length: 0, header: []})
         setLoading(false)
       })
-  }
+  }, [setLoading, setData, setError, page])
 
-  const save = (data: SaveArticle) => {
+  const save = useCallback((data: SaveArticle) => {
 
     const newData: SaveArticle = {
       ...data,
@@ -75,11 +85,11 @@ export default function Home() {
     })
     
     
-  }
+  }, [setEditing, setLoading, setError, setData])
 
   useEffect(() => {
     fetchAll()
-  }, [])
+  }, [fetchAll])
   
   return (<ThemeProvider theme={theme}>
           {!loading && data.header.length > 0 && <Button color="secondary" onClick={() => setEditing({

@@ -6,12 +6,12 @@ import {parseCSV} from '../../parser'
 const PAGE_SIZE = 25
 
 // USE PAGINATION FOR FASTER EXPERIENCE
-export async function GET(request: Request): Promise<Response> {  
+export async function POST(request: Request): Promise<Response> {  
   try {
-    const { searchParams } = new URL(request.url);
+    const body = await request.json()
     
-    const page: number = parseInt(searchParams.get('page')||"0")
-    const refresh: boolean = searchParams.get('refresh') ? true : false
+    const page: number = parseInt(body.page || -1)
+    const refresh: boolean = body.refresh
     
     const projectFolder = process.cwd();
     
