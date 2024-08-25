@@ -1,0 +1,13 @@
+services:
+  app:
+    image: jorgemartinezpizarro/bookmarks:latest
+    restart: always
+    ports:
+      - 3019:3000
+    volumes:
+      - ./volumes/bookmarks:/app/media/data
+      - ../files/volumes/root/Audio:/app/media/audio
+      - ../files/volumes/root/Erotic:/app/media/video
+    environment:
+      - NEXT_APP_PASSWORD=3141592653589793238462643383
+      - NODE_ENV=development
