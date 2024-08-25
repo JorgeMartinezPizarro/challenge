@@ -1,39 +1,40 @@
 import fs from 'fs';
 
-function errorMessage(error: Error | any): string {
-    let message: string
-    if (error instanceof Error) {
-        message = error.message
-        console.log("An Error ocurred.")
-        console.log(message)
-        console.log(error.stack?.split("\n").slice(0, 5).join("\n"))
-    }
-    else message = String(error)
-    return message;
-}
+import {errorMessage} from "../../helpers"
 
+let count = 0
+
+// USE PAGINATION FOR FASTER EXPERIENCE
 export async function GET(request: Request): Promise<Response> {  
   try {
+    count = 0;
     
     const projectFolder = process.cwd();
     
-    const articlesCSV: string = fs.existsSync(projectFolder + '/data/articles.csv') 
-        ? fs.readFileSync(projectFolder + '/data/articles.csv', 'utf8')
-        : fs.readFileSync(projectFolder + '/data/original.csv', "utf-8")
+    const articlesCSV: string = fs.existsSync(projectFolder + '/data/stored.csv') 
+        ? fs.readFileSync(projectFolder + '/data/stored.csv', 'utf8')
+        : fs.readFileSync(projectFolder + '/data/original.csv', "utf8")
     
-    const headerString = "Hauptartikelnr;Artikelname;Hersteller;Beschreibung;Materialangaben;Geschlecht;Produktart;Ärmel;Bein;Kragen;Herstellung;Taschenart;Grammatur;Material;Ursprungsland;Bildname"
+    const firstLine = articlesCSV.match(/^[^\n]*/)
 
-    const header = headerString
-        .split(";")
+    const headerLine = firstLine ? firstLine[0] : ""
     
-    const results: string[][] = [header]
+    const results: string[][] = [headerLine.split(";")]
 
-    articlesCSV.replace(headerString, "").split(/\.jpg\s*(?:\r?\n)/).forEach(line => {
-        const result = line.split(";")
-        result[result.length - 1] += ".jpg"
+    // TODO DONT LOAD THE "" IN CASE OF RESERVER CHARS
+    articlesCSV.replace(headerLine + "\n", "").split(/\.jpg\s*(?:\r?\n)/).forEach(line => {
+        const result = line.split(/;(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/)
+        if (result.length !== 16) {
+            throw new Error("INVALID FORMAT READ, EXPECTE 16 COLUMNS")
+        }
+        result[15] += ".jpg"
         results.push(result)
     })
-    
+
+    if (count !== 0) {
+        throw new Error("Error parsing the line CSV")
+    }
+
     return new Response(JSON.stringify(results), {
         headers: { 
             'Content-Type': 'application/json; chatset=utf-8',

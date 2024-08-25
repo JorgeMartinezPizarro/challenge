@@ -1,39 +1,38 @@
-* {
+html, body {
+  height: 100%;
+  width: 100%;
   color: white;
-  font-size: 18px;
+  overflow: hidden;
 }
 
-html, body {
-  height: 98%;
-  width: 98%;
-  overflow: hidden;
-  color: white;
-  
+.container {
+  margin-top: 80px;
+  height: calc(100% - 120px);
+  width: 99%;
+  overflow-y: scroll;
 }
 
 .controls {
   color: white;
-  background: #215519!important;
+  background: #215519;
   width: 100%;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
-  height: 70px;
-  padding: 10px;
+  height: 84px;
+  margin: 0;
+  padding: 0;
   
 }
-.container {
-  overflow: scroll;
-  margin-top: 0;
-  margin-bottom: 65px;
-  border-radius: 20px;
-  height: 94%;
-  padding: 0 10px 10px 10px;
-  overflow: scroll;
-  width: 98%;
+.controls .MuiTableCell-root {
+  padding-top: 8px;
+  width: 260px;
+  height: 76px;
+  overflow: hidden;
 }
 
-tr:nth-child(1) td {
+tr:nth-child(1) td,
+tr:nth-child(1):hover td {
   background: #215519;
   color: white;
 }
@@ -43,10 +42,29 @@ tr:nth-child(even) td {
 }
 button.float-add {
   position: fixed;
-  left: 25px;
-  bottom: 10px;
+  right: 16px;
+  top: 16px;
   z-index: 230;
   height: 52px;
-  background: #316529!important;
+  background: #316529;
   color: white;
+}
+
+.list tr:nth-child(even):hover td,
+.list tr:nth-child(odd):hover td {
+  color: "white";
+  background-color: black;
+}
+
+tr span {
+  display: -webkit-box;     /* Display as a flexbox with Webkit support */
+  box-orient: vertical;  /* Set the box orientation to vertical */
+  line-clamp: 2;    /* Limit the text to 2 lines */
+  width: 100%;
+  overflow: hidden;         /* Hide overflow */
+  display: -webkit-box;     /* Display as a flexbox with Webkit support */
+  text-overflow: ellipsis;  /* Show ellipsis if the text overflows */
+  line-height: 25px;       /* Adjust line height as needed */
+  height: 50px;            /* Set height to exactly 2 lines */
+  white-space: normal;      /* Allows wrapping of text */
 }

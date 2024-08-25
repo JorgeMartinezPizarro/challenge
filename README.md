@@ -1,8 +1,10 @@
 ## TODO
 
-- reparar parseador
-- terminar save
+- editar y borrar
+- validar formulario, escape de ; y prohibido "
 - agregar tests
+- speed up forms
+- paginacion en load
 
 # challenge
 
