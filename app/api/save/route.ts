@@ -19,7 +19,7 @@ export async function POST(request: Request): Promise<Response> {
       ? projectFolder + '/data/stored.csv'
       : projectFolder + '/data/original.csv'
     
-      const saveFolder = projectFolder + '/data/stored.csv';
+    const saveFolder = projectFolder + '/data/stored.csv';
     
     const storedArticles: any = await parseCSV(articlesFolder);
     

@@ -1,73 +1,16 @@
 html, body {
   height: 100%;
   width: 100%;
-  color: white;
   overflow: hidden;
 }
 
-.container {
-  margin-top: 80px;
-  height: calc(100% - 270px);
-  width: 97%!important;
-  overflow-y: scroll;
-}
-
-.controls {
-  color: white;
-  background: #215519;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 84px;
-  margin: 0;
-  padding: 0;
-  
-}
-.controls .MuiTableCell-root {
-  padding-top: 8px;
-  width: 260px;
-  height: 76px;
-  overflow: hidden;
-  background: #215519;
-  border-color: #215519;  
-  color: white;
+tr:nth-child(odd) {
+  background: green;
 }
 
 
-tr:nth-child(even) td {
-  color: #215519;
-  background: white;
-}
-
-tr:nth-child(odd) td {
-  color: white;
-  background: #215519;
-}
-
-
-button.float-add {
-  position: fixed;
-  right: 16px;
-  top: 16px;
-  z-index: 230;
-  height: 52px;
-  background: #316529;
-  color: white;
-}
-button.float-add-2 {
-  position: fixed;
-  right: 100px;
-  top: 16px;
-  z-index: 230;
-  height: 52px;
-  background: #316529;
-  color: white;
-}
 
 tr span {
-  display: -webkit-box;   
-  box-orient: vertical;  
   line-clamp: 2;   
   width: 100%;
   overflow: hidden;
@@ -77,28 +20,26 @@ tr span {
   height: 50px;           
   white-space: normal;    
 }
-.MuiModal-root {
-  text-align: center;
-  align-items: center;
-  vertical-align: middle;
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: green;
+  padding: 16px;
   color: white;
-  background: black;
-  height: 100%;
-  margin-top: 92px;
-  opacity: 1;
-  overflow-y: scroll;
 }
-.MuiModal-root button {
-  margin-top: 22px;
-  margin-left: 8px;
-  
+
+.controls{
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
 }
-input[type="text"],
-input[type="text"] * {
-  color: black;
+
+.MuiModal-root input {
   background: white;
-  border-color: white;
-}
-.MuiPaper-root  {
-  width: 98%;
+  color: black;
 }
