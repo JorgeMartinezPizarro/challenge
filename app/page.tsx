@@ -103,7 +103,7 @@ export default function Home() {
   }, [fetchAll])
   
   const totalPages = Math.round((data?.length || 0) / PAGE_SIZE)
-  console.log(message)
+  
   return (<ThemeProvider theme={theme}>
     {data && <header>
       <Button title="Navigate to the first page" onClick={() => {setPage(0); fetchAll()}} color="primary" variant="contained"><FirstPageIcon /></Button>
@@ -118,14 +118,14 @@ export default function Home() {
         fetchAll()
       }}><ArrowForwardIosIcon /></Button>
       <Button variant="contained" title="Navigate to the last page" color="primary" onClick={() => {setPage(totalPages - 1); fetchAll()}}><LastPageIcon /></Button>
-      <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({data: [], page, pos: -1})}} ><AddIcon /></Button>
+      <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({data: data.header.map(() => ""), page, pos: -1})}} ><AddIcon /></Button>
       <Button variant="contained" title="Reload the data from the challenge" color="primary" onClick={() => {fetchAll(true)}} ><RefreshIcon /></Button>
     </header>}
-          {error && <Alert  style={{marginTop: "124px", width: "calc(98% - 8px)"}} icon={<ErrorIcon />} variant="filled" severity="error">
+          {error && <Alert title={error} icon={<ErrorIcon />} variant="filled" severity="error">
                   An error ocurred: {error}
             </Alert>
           }
-          {message && <Alert style={{marginTop: "124px", width: "calc(98% - 8px)"}} icon={<CheckIcon />} variant="filled" severity="success">
+          {message && <Alert title={message} icon={<CheckIcon />} variant="filled" severity="success">
                   {message}
                 </Alert>
                 
@@ -150,13 +150,15 @@ export default function Home() {
               </>
             </Modal>}
           {data && data.header.length > 0 && <TableContainer >
-          <Table stickyHeader >
-            <TableBody>
+          <Table>
+            <TableHead>
               {<TableRow key={"header"}>
-                <TableCell >Page {page + 1} of {totalPages}</TableCell>
-                <TableCell >Total of {data.length} articles</TableCell>
+                <TableCell colSpan={2}>Page {page + 1} / {totalPages}, {data.length} articles</TableCell>
                 {data.header && data.header.map((el: string, i: number) => <TableCell key={el + " - " + i}>{el}</TableCell>)}
               </TableRow>}
+            </TableHead>
+            <TableBody>
+              
               {data.data.length > 0 && data.data.map((row: string[], j: number) => <TableRow className="list" key={j}>
                 <TableCell title={"Edit element with data: " + row.toString()}><Button color="secondary" onClick={() => {
                   setEditing({

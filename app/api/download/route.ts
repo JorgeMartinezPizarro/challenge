@@ -24,7 +24,7 @@ export async function GET(req: Request) {
   const readableStream = streamToReadableStream(readStream);
 
   if (readStream === null || readStream === undefined)
-    return NextResponse.json({ error: 'File not found ' + filepath } , { status: 404 });
+    return NextResponse.json({ error: 'File not found ' + filepath} , {status: 404});
   else
     return new NextResponse(readableStream);
 }

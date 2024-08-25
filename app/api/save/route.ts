@@ -9,7 +9,7 @@ const PAGE_SIZE = 25
 export async function POST(request: Request): Promise<Response> {  
 
   try {
-    
+    const start = Date.now()
     const body = await request.json() as SaveArticle    
     const {pos, data, page} = body
     
@@ -19,24 +19,24 @@ export async function POST(request: Request): Promise<Response> {
       ? projectFolder + '/data/stored.csv'
       : projectFolder + '/data/original.csv'
     
-    const saveFolder = projectFolder + '/data/stored.csv';
+    const saveFolder = projectFolder + '/data/stored.json';
     
     const storedArticles: any = await parseCSV(articlesFolder);
     
     let newArticles = [...storedArticles]
     let message = ""
     if (pos === -1 && data !== undefined) {
-      message = "Added new element on first position with data " + "[" + data.join(", ") + "]"
+      message = "Added new element on first position with data " + "[" + data.join(", ") + "] in " + (Date.now() - start) + " ms"
       newArticles = [...newArticles.slice(0, page * PAGE_SIZE + 1), data, ...newArticles.slice(page * PAGE_SIZE + 1)]
     } else if (pos >= 0 && data !== undefined) {
-      message = "Edited element with pos " + pos + " and data " + "[" + data.join(", ") + "]"
+      message = "Edited element with pos " + pos + " and data " + "[" + data.join(", ") + "] in " + (Date.now() - start) + " ms"
       newArticles[pos + 1 + page * PAGE_SIZE] = data
     } else if (pos >= 0) {
       newArticles = [...newArticles.slice(0, pos + 1 + page * PAGE_SIZE), ...newArticles.slice(2 + pos + page * PAGE_SIZE)]
-      message = "Deleted element with pos " + pos 
+      message = "Deleted element with pos " + pos + " in " + (Date.now() - start) + " ms"
     }
 
-    fs.writeFileSync(saveFolder, convertToCSV(newArticles));
+    fs.writeFileSync(saveFolder, JSON.stringify(newArticles));
     
     return new Response(JSON.stringify({
       message,

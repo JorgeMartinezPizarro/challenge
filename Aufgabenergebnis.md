@@ -14,9 +14,9 @@ Ich setze in meinem Projekt die folgenden 3rd Party Libraries ein: (falls keine,
 
 Name | Begründung
 --- | ---
-[material UI](https://mui.com) | Für die Style des Apps.
-[nextjs](https://example.org) | Für das Build des Systems.
-[papaparse](https://www.npmjs.com/package/papaparse) | Für das Lesen des CSV.
+[material UI](https://mui.com) | Für die styles
+[nextjs](https://example.org) | Für das build
+[papaparse](https://www.npmjs.com/package/papaparse) | Für das CSV laden
 
 ## Installation / Ausführen des Projektes
 
@@ -24,7 +24,7 @@ Folgende Komponenten müssen lokal installiert sein:
 
 - [nodejs](https://nodejs.org/en) v18.17.0 
 - [npm](https://npm.org) v9.6.7
-- [docker](https://docker.com) latest - *optional*
+- [docker](https://docker.com) v26.0.1 *optional*
 
 Um das Projekt lokal auszuführen, folgendes in der Commandline / Bash eingeben:
 

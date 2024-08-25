@@ -11,8 +11,7 @@ const theme = createTheme({
             styleOverrides: {
               root: {
                 background: PRIMARY,
-                color: PRIMARY_TEXT
-                
+                color: PRIMARY_TEXT,
               },
               stickyHeader: true,
               
@@ -26,6 +25,15 @@ const theme = createTheme({
                 height: "calc(100% - 230px)",
                 marginTop: "20px"
               },
+            },
+        },
+        MuiAlert: {
+            styleOverrides: {
+                root: {
+                    marginTop: "92px", 
+                    width: "calc(95% - 53px)",
+                    height: "84px"
+                },
             },
         },
         MuiModal: {
@@ -45,7 +53,9 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
               root: {
-                
+                height: "28px",
+                padding: "4px",
+                margin: "4px",
               },
               text: {
                 // Common styles for all buttons
@@ -55,38 +65,24 @@ const theme = createTheme({
               },
               containedPrimary: {
                 "&": {
-                    backgroundColor: PRIMARY,  // Customize the hover color for primary buttons
+                    backgroundColor: PRIMARY,
                     color: PRIMARY_TEXT,
-                    height: "87px",
-                    padding: "3px",
-                    margin: "3px",
-                    boxShadow: 6,
                 },
                 "&:hover": {
-                    backgroundColor: SECONDARY,  // Customize the hover color for primary buttons
+                    backgroundColor: SECONDARY,
                     color: SECONDARY_TEXT,
-                    height: "87px",
-                    padding: "3px",
-                    margin: "3px",
-                    boxShadow: 6,
+                    boxShadow: 18,
                 },
               },
               containedSecondary: {
                 "&": {
-                    backgroundColor: SECONDARY,  // Customize the hover color for primary buttons
+                    backgroundColor: SECONDARY,
                     color: SECONDARY_TEXT,
-                    height: "87px",
-                    padding: "3px",
-                    margin: "3px",
-                    boxShadow: 6,
                 },
                 "&:hover": {
-                    backgroundColor: PRIMARY,  // Customize the hover color for primary buttons
+                    backgroundColor: PRIMARY,
                     color: PRIMARY_TEXT,
-                    height: "87px",
-                    padding: "3px",
-                    margin: "3px",
-                    boxShadow: 6,
+                    boxShadow: 18,
                 },
                 
               },
