@@ -17,7 +17,7 @@ Solve the following repository challenge:
 
 Just see the live version https://ideniox.com:31415
 
-Read more about it [Aufgabenerbebnis]([https://github.com/JorgeMartinezPizarro/challenge/blob/master/Aufgabenerbebnis.mb]())
+Read more about it [Aufgabenerbebnis.md](https://github.com/JorgeMartinezPizarro/challenge/blob/master/Aufgabenerbebnis.mb)
 
 Currently it **requires** `node` version `18.17.0` and `npm` version `10.8.2`
 
