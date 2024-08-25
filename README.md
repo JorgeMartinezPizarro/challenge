@@ -19,7 +19,7 @@ Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro
 
 Currently it **requires** `node` version `18.17.0` and `npm` version `10.8.2`
 
-Just see the live version https://ideniox.com:31415
+Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 
 To run the productive version with node and npm installed
 
