@@ -89,9 +89,11 @@ export default function Home() {
     fetchAll()
   }, [])
 
+  // TODO: loading MODAL
+
   return (<>
-          <Button onClick={() => setAdding(true)} className={"float-add"}>+</Button>
-          {adding && <Modal open={adding} style={{marginTop: "80px", background: "green", opacity: 1, textAlign: "center", overflowY:"scroll"}}>
+          {!loading && <Button onClick={() => setAdding(true)} className={"float-add"}>+</Button>}
+          {!loading && adding && <Modal open={adding} style={{marginTop: "80px", background: "green", opacity: 1, textAlign: "center", overflowY:"scroll"}}>
               <>
                 <p>Filling the following values to create a new Article in our database.</p>
                 {header(data).map((element, i) => <><TextField style={{marginBottom: "12px"}} name={"param-" + i} value={values[i]} onChange={(e) => {
@@ -105,7 +107,7 @@ export default function Home() {
                 </Box>
               </>
             </Modal>}
-          <TableContainer component={Paper} className="container">
+          {!loading && <TableContainer component={Paper} className="container">
           <Table stickyHeader>
             <TableBody>
               {<TableRow key={"-"}>{
@@ -138,7 +140,7 @@ export default function Home() {
               }</TableRow>)}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer>}
       </>
   );
 }

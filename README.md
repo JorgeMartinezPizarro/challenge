@@ -17,7 +17,7 @@ Solve the following repository challenge:
 
 Just see the live version https://ideniox.com:31415
 
-Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro/challenge/blob/main/Aufgabenergebnis.mb)
+Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro/challenge/blob/main/Aufgabenergebnis.md)
 
 Currently it **requires** `node` version `18.17.0` and `npm` version `10.8.2`
 
