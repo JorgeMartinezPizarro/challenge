@@ -10,7 +10,7 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const body = await request.json()
     
-    const page: number = parseInt(body.page || -1)
+    const page: number = parseInt(body.page || 0)
     const refresh: boolean = body.refresh
     
     const projectFolder = process.cwd();

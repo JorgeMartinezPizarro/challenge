@@ -8,7 +8,7 @@ html, body {
 .container {
   margin-top: 80px;
   height: calc(100% - 120px);
-  width: 99%;
+  width: 97%!important;
   overflow-y: scroll;
 }
 
@@ -29,12 +29,19 @@ html, body {
   width: 260px;
   height: 76px;
   overflow: hidden;
+  background: #215519;
+  border-color: #215519;  
+  color: white;
 }
 
 tr:nth-child(1) td,
 tr:nth-child(1):hover td {
   background: grey;
   color: white
+  
+}
+.MuiToolbar-root  {
+  color: white;
   
 }
 tr:nth-child(even) td {
@@ -72,16 +79,16 @@ button.float-add-2 {
 }
 
 tr span {
-  display: -webkit-box;     /* Display as a flexbox with Webkit support */
-  box-orient: vertical;  /* Set the box orientation to vertical */
-  line-clamp: 2;    /* Limit the text to 2 lines */
+  display: -webkit-box;   
+  box-orient: vertical;  
+  line-clamp: 2;   
   width: 100%;
-  overflow: hidden;         /* Hide overflow */
-  display: -webkit-box;     /* Display as a flexbox with Webkit support */
-  text-overflow: ellipsis;  /* Show ellipsis if the text overflows */
-  line-height: 25px;       /* Adjust line height as needed */
-  height: 50px;            /* Set height to exactly 2 lines */
-  white-space: normal;      /* Allows wrapping of text */
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  line-height: 25px;      
+  height: 50px;           
+  white-space: normal;    
 }
 .MuiModal-root {
   text-align: center;
@@ -94,9 +101,17 @@ tr span {
   opacity: 1;
   overflow-y: scroll;
 }
+.MuiModal-root button {
+  margin-top: 22px;
+  margin-left: 8px;
+  
+}
 input[type="text"],
 input[type="text"] * {
   color: black;
   background: white;
   border-color: white;
+}
+.MuiPaper-root  {
+  width: 98%;
 }

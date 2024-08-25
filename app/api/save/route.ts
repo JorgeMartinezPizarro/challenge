@@ -12,7 +12,7 @@ export async function POST(request: Request): Promise<Response> {
     
     const body = await request.json() as SaveArticle    
     const {pos, data, page} = body
-    console.log(body)
+    
     const projectFolder = process.cwd();
     
     const articlesFolder: string = fs.existsSync(projectFolder + '/data/stored.csv')
@@ -43,7 +43,7 @@ export async function POST(request: Request): Promise<Response> {
       data: {
         header: newArticles[0],
         data: newArticles.slice(1).slice(page * PAGE_SIZE, PAGE_SIZE + page * PAGE_SIZE),
-        length: newArticles.length
+        length: newArticles.length - 1
       }}), {
         headers: { 
             'Content-Type': 'application/json; chatset=utf-8',

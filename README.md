@@ -1,8 +1,7 @@
 ## TODO
 
-- FORM VALIDATION ; and "
-- ADD 4 TESTS
-- FORM SPEED UP
+- ADD 2 TESTS
+- FORM BEAUTY AND COLOR
 
 # challenge
 

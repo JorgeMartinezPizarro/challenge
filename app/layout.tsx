@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Challenge",
-  description: "Practice exercise about JS and React",
+  description: "Practice exercise about Typescript and React",
 };
 
 export default function RootLayout({
