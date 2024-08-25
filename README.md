@@ -1,11 +1,10 @@
 ## TODO
 
-- editar y borrar
-- validar formulario, escape de ; y prohibido "
-- agregar tests
-- speed up forms
-- paginacion en load
-- add Dockerfile
+- EDIT AND DELTE
+- FORM VALIDATION ; and "
+- ADD 4 TESTS
+- FORM SPEED UP
+- LOAD WITH PAGE
 
 # challenge
 
@@ -17,11 +16,11 @@ Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro
 
 ## Getting Started
 
-Currently it **requires** `node` version `18.17.0` and `npm` version `10.8.2`
+It **requires** [nodejs](https://nodejs.org/en) v18.17.0 and [npm](https://npm.org) v9.6.7 and optional [docker](https://docker.com) latest
 
 Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 
-To run the productive version with node and npm installed
+To run with node and npm:
 
 ```bash
 npm install
@@ -29,10 +28,10 @@ npm run build
 npm run start
 ```
 
-or start it dockerized via:
+To run with docker:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 Open [http://localhost:31415](http://localhost:31415) with your browser to see the result.
@@ -46,6 +45,8 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ## Build docker
+
+For the owner of the account, otherwise change the `jorgemartinezpizarro/dev:challenge` for your own docker account.
 
 ```bash
     docker build -t jorgemartinezpizarro/dev:challenge .
