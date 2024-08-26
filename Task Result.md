@@ -52,6 +52,7 @@ npm run start
 
 ```bash
 git clone git@github.com:JorgeMartinezPizarro/challenge.git
+cd challenge
 docker compose up -d
 ```
 
