@@ -1,10 +1,8 @@
 ## Challenge
 
-Solve the following repository challenge:
+Solve the following [frontend-junior-code-challenge-1](https://github.com/UDG-United-Digital-Group/frontend-junior-code-challenge-1/blob/master/README.en-US.md)
 
-- https://github.com/UDG-United-Digital-Group/frontend-junior-code-challenge-1/blob/master/README.en-US.md
-
-Read more about it [Test Result]("https://github.com/JorgeMartinezPizarro/challenge/blob/main/Test Result.md")
+Read more about the results [here](https://github.com/JorgeMartinezPizarro/challenge/blob/main/Task%20Result.md)
 
 ## Getting Started
 

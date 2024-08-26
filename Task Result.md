@@ -18,7 +18,7 @@ Name | Reason
 [material UI](https://mui.com) | Für die styles
 [nextjs](https://example.org) | Für das build
 [papaparse](https://www.npmjs.com/package/papaparse) | Für das CSV laden
-[chartjs][https://www.chartjs.org/]  | Für die diagrams
+[chartjs](https://www.chartjs.org/) | Für die diagrams
 
 ## Installation / Run
 
