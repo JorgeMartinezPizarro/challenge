@@ -8,7 +8,7 @@ Read more about the results [here](https://github.com/JorgeMartinezPizarro/chall
 
 Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 
-To continue you **require** [nodejs](https://nodejs.org/en) `v18.17.0` and [npm](https://npm.org) `v9.6.7` or [docker](https://docker.com) `26.0.1`
+To continue you **require** [nodejs](https://nodejs.org/en) `v18.17.0` and [npm](https://npm.org) `v10.8.2` or [docker](https://docker.com) `26.0.1`
 
 To run with node and npm:
 
