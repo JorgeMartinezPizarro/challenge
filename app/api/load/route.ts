@@ -25,7 +25,7 @@ export async function POST(request: Request): Promise<Response> {
     }
     
     const response: ArticlesResponse = {
-      message: `Successfully ${refresh ? " freshly load from challenge csv " : " load "} page ${page} with ${pageSize} articles in ${Date.now() - start} ms`,
+      message: `Successfully ${refresh ? " freshly load from challenge csv " : " load "} page ${page + 1} with ${pageSize} articles in ${Date.now() - start} ms`,
       articles: {
         data: results.slice(1).slice(page * pageSize, pageSize + page * pageSize),
         header: results[0],
