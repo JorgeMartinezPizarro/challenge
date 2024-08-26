@@ -23,8 +23,9 @@ const theme = createTheme({
             styleOverrides: {
               root: {
                 overflow: "scroll",
-                width: "calc(100% - 32px)",
-                height: "calc(100% - 230px)",
+                width: "calc(100% - 16px)",
+                height: "calc(100% - 220px)",
+                margin: 0,
                 marginTop: "40px"
               },
             },
@@ -33,7 +34,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     marginTop: "70px", 
-                    width: "calc(95% - 53px)",
+                    width: "calc(100% - 48px)",
                     height: "84px",
                     overflow: 'hidden',
                     textOverflow: "ellipsis"
@@ -44,7 +45,7 @@ const theme = createTheme({
             styleOverrides: {
               root: {
                 textAlign: "center",
-                background: PRIMARY,
+                background: "black",
                 color: SECONDARY_TEXT,
                 overflowY: "scroll",
                 width: "100%",

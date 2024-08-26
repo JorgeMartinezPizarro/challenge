@@ -1,15 +1,10 @@
-## TODO
-
-- ADD 2 TESTS
-- FORM FIXY
-
-# challenge
+## Challenge
 
 Solve the following repository challenge:
 
 - https://github.com/UDG-United-Digital-Group/frontend-junior-code-challenge-1/blob/master/README.en-US.md
 
-Read more about it [Aufgabenergebnis.md](https://github.com/JorgeMartinezPizarro/challenge/blob/main/Aufgabenergebnis.md)
+Read more about it [Test Result]("https://github.com/JorgeMartinezPizarro/challenge/blob/main/Test Result.md")
 
 ## Getting Started
 
