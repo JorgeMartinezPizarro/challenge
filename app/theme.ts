@@ -44,13 +44,14 @@ const theme = createTheme({
             styleOverrides: {
               root: {
                 textAlign: "center",
-                background: '#000000',
-                color: "#d7d7d7",
+                background: PRIMARY,
+                color: SECONDARY_TEXT,
                 overflowY: "scroll",
                 width: "100%",
                 height: "calc(100% - 92px)",
-                marginTop: "92px", 
+                paddingTop: "92px", 
                 opacity: "1",
+                zIndex: 100,
               },
             },
         },

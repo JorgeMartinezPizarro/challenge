@@ -16,8 +16,10 @@ export async function POST(request: Request): Promise<Response> {
     
     let results: string[][] = []
     try {
+      if (refresh)
+        throw new Error("Removing stored values, reset to defaults.")
       results = JSON.parse(fs.readFileSync(projectFolder + '/data/stored.json', 'utf8'))
-    } catch {
+    } catch(e) {
       fs.existsSync(projectFolder + '/data/stored.json') && fs.unlinkSync(projectFolder + '/data/stored.json')
       results = await parseCSV(fs.readFileSync(projectFolder + '/data/original.csv', 'utf8'))    
     }

@@ -38,12 +38,21 @@ header {
   left: 0;
 }
 
-.MuiModal-root input {
+.MuiModal-root .MuiTextField-root input {
   margin: 8px 8px;
-  padding: 4px;
+  padding: 8px;
   background: white;
-  color: black;
+  color: black!important;
+  z-index: 10;
 }
 .MuiModal-root button {
   height: 80px;
+  z-index: 300;
+}
+
+.MuiModal-root .MuiBox-root {
+  background: black;
+  color: white;
+  z-index: 300;
+  opacity: 1;
 }

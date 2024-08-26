@@ -2,18 +2,21 @@
 
 import { ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect, useCallback} from "react"
+import BarChartIcon from '@mui/icons-material/BarChart';
 import { CircularProgress, Box, TextField, Button, Alert, Modal, TableBody, TableCell, TableContainer, TableHead, TableRow, Table} from '@mui/material';
 import { ArrowBackIosNew as ArrowBackIosNewIcon, ArrowForwardIos as ArrowForwardIosIcon, Download as DownloadIcon, LastPage as LastPageIcon, FirstPage as FirstPageIcon, Error as ErrorIcon, Check as CheckIcon, Refresh as RefreshIcon, Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material"
 
 import {errorMessage} from './helpers'
+import Charts from './components/Chats'
 import { SaveArticle, Articles, ArticlesResponse } from "./types";
 import theme from './theme'
 
-const pageSize = 25;
+const pageSize = 100;
 
 export default function Home() {
   
   const [message, setMessage] = useState("")
+  const [show, setShow] = useState(false)
   const [error, setError] = useState("")
   const [data, setData] = useState<undefined | Articles>()
   const [page, setPage] = useState(0)
@@ -89,10 +92,8 @@ export default function Home() {
     fetchAll()
   }, [fetchAll])
 
-  console.log(data)
-  
   return (<ThemeProvider theme={theme}>
-    {data && <header>
+    {data && !show && editing === undefined && <header>
       <Button title="Navigate to the first page" onClick={() => {setPage(0); fetchAll()}} color="primary" variant="contained"><FirstPageIcon /></Button>
       <Button title="Navigate one page back" color="primary" variant="contained" onClick={() => {
         setPage((page === 0) ? 0 : (page - 1))
@@ -107,17 +108,28 @@ export default function Home() {
       <Button variant="contained" title="Navigate to the last page" color="primary" onClick={() => {setPage(totalPages - 1); fetchAll()}}><LastPageIcon /></Button>
       <Button variant="contained" title="Add new Article to the database" color="primary" onClick={() => {setEditing({pageSize, data: data.header.map(() => ""), page, pos: -1})}} ><AddIcon /></Button>
       <Button variant="contained" title="Reload the data from the challenge" color="primary" onClick={() => {fetchAll(true)}} ><RefreshIcon /></Button>
+      <Button variant="contained" title="Show diagrams" color="primary" onClick={() => {setShow(true)}} ><BarChartIcon /></Button>
     </header>}
-          {error && <Alert title={error} icon={<ErrorIcon />} variant="filled" severity="error">
+            {data && data.data.length > 0 && show && <Modal open={true} >
+            
+            <>
+              <Box className="controls">
+                  <Button variant="contained" color="secondary" onClick={() => setShow(false)} >CLOSE</Button>
+                  <Charts data={data.data} />
+              </Box>
+              
+            </>
+          </Modal>}
+          {editing === undefined && !show && error && <Alert title={error} icon={<ErrorIcon />} variant="filled" severity="error">
                   An error ocurred: {error}
             </Alert>
           }
-          {message && <Alert title={message} icon={<CheckIcon />} variant="filled" severity="success">
+          {editing === undefined && !show && message && <Alert title={message} icon={<CheckIcon />} variant="filled" severity="success">
                   {message}
                 </Alert>
                 
           }
-          {data && data.header.length > 0 && editing && <Modal open={true} >
+          {editing && !show && data && data.header.length > 0 && editing && <Modal open={true} >
             
               <>
                 <p>{editing.pos === -1 ? " Create a new Article in our database" : "Edit the article with (pos, page) = (" + editing.pos + ", " + page + ")"}</p>
@@ -136,7 +148,7 @@ export default function Home() {
                 
               </>
             </Modal>}
-          {data && data.header.length > 0 && <TableContainer >
+          {editing === undefined && !show && data && data.header.length > 0 && <TableContainer >
           <Table>
             <TableHead>
               {<TableRow key={"header"}>
