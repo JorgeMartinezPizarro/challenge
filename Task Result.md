@@ -22,19 +22,13 @@ Name | Reason
 
 ## Installation / Run
 
-Describe how we can check your project locally.
-
-For example:
-
----
-
-The following components must be installed locally:
+The following components must be installed:
 
 - [nodejs](https://nodejs.org/en) v18.17.0 
 - [npm](https://npm.org) v9.6.7
 - [docker](https://docker.com) v26.0.1 *optional*
 
-To run the project locally, enter the following in the command line / bash:
+To run the project, enter the following in the command line:
 
 - Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 
@@ -56,4 +50,4 @@ cd challenge
 docker compose up -d
 ```
 
-Open [http://localhost:31415](http://localhost:31415) with your browser to see the result.
+Open [localhost:31415](http://localhost:31415) to see the results.

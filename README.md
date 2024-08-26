@@ -1,10 +1,10 @@
-## Challenge
+# Challenge
 
 Solve the following [frontend-junior-code-challenge-1](https://github.com/UDG-United-Digital-Group/frontend-junior-code-challenge-1/blob/master/README.en-US.md)
 
 Read more about the results [here](https://github.com/JorgeMartinezPizarro/challenge/blob/main/Task%20Result.md)
 
-## Getting Started
+## Installing and running
 
 Just see the secured live version [Live DEMO](https://dev.ideniox.com)
 
@@ -34,7 +34,7 @@ There is already a docker image ready to use with the latest build of the challe
 
 Open [http://localhost:31415](http://localhost:31415) with your browser to see the result.
 
-## Build docker
+## Build with docker
 
 For the owner of the account, otherwise change the `jorgemartinezpizarro/dev:challenge` for your own docker account.
 
