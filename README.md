@@ -20,7 +20,7 @@ npm run build
 npm run start
 ```
 
-To run with docker:
+There is a [docker image](https://hub.docker.com/repository/docker/jorgemartinezpizarro/dev/tags) to run with docker:
 
 ```bash
 git clone git@github.com:JorgeMartinezPizarro/challenge.git
@@ -28,11 +28,7 @@ cd challenge
 docker compose up -d
 ```
 
-There is already a docker image ready to use with the latest build of the challenge:
-
-[Docker Hub](https://hub.docker.com/repository/docker/jorgemartinezpizarro/dev/tags)
-
-Open [http://localhost:31415](http://localhost:31415) with your browser to see the result.
+Open [http://localhost:31415](http://localhost:31415) to see the result.
 
 ## Build with docker
 
