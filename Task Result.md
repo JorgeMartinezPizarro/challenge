@@ -25,7 +25,7 @@ Name | Reason
 The following components must be installed:
 
 - [nodejs](https://nodejs.org/en) v18.17.0 
-- [npm](https://npm.org) v9.6.7
+- [npm](https://npm.org) v10.8.2
 - [docker](https://docker.com) v26.0.1 *optional*
 
 To run the project, enter the following in the command line:
